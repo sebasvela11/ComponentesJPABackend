@@ -2,7 +2,6 @@ package com.componentes.ulatina.modelo;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.*;
 
 @Entity
