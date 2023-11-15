@@ -13,5 +13,5 @@ public interface IMantenimientoEmpleado<E> {
 	public E validarUsuario(EntityManager em, String creedencial, String contrasena);
 	public E empleadoPorId(EntityManager em, int id);
 	public List<E> listar(EntityManager em);
-	//public List<E> listarPorRol(EntityManager em, Detalle detalle);
+	public List<E> listarPorRol(EntityManager em, Detalle detalle);
 }

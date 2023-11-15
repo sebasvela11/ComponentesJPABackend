@@ -30,4 +30,10 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 		List<Empleado> empleados = new ArrayList<Empleado>();
 		return empleados;
 	}
+
+	@Override
+	public List<Empleado> listarPorRol(EntityManager em, Detalle detalle) {
+		List<Empleado> empleados = new ArrayList<Empleado>();
+		return empleados;
+	}
 }

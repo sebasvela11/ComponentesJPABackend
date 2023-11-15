@@ -44,20 +44,7 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 	}
 
 	@Override
-	public List<DetalleCurriculum> listarPorCurriculum(EntityManager em, Curriculum curriculum) {
-		List<DetalleCurriculum> detalleCurriculum = new ArrayList<DetalleCurriculum>();
-		return detalleCurriculum;
-	}
-
-	@Override
 	public List<DetalleCurriculum> listarPorTipoEmpleado(EntityManager em, Empleado empleado, Detalle detalle) {
-		List<DetalleCurriculum> detalleCurriculum = new ArrayList<DetalleCurriculum>();
-		return detalleCurriculum;
-	}
-
-	@Override
-	public List<DetalleCurriculum> listarPorTipoEmpleadoCurriculum(EntityManager em, Empleado empleado, Detalle detalle,
-			Curriculum curriculum) {
 		List<DetalleCurriculum> detalleCurriculum = new ArrayList<DetalleCurriculum>();
 		return detalleCurriculum;
 	}
