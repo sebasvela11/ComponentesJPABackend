@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import com.componentes.ulatina.imantenimiento.IMantenimientoProyecto;
+import com.componentes.ulatina.modelo.Empleado;
 import com.componentes.ulatina.modelo.Proyecto;
 
 public class ServicioProyecto implements IMantenimientoProyecto<Proyecto>{
@@ -27,6 +28,12 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto>{
 		List<Proyecto> proyectos = new ArrayList<Proyecto>();
 		return proyectos;
 	
+	}
+
+	@Override
+	public List<Proyecto> listarPorUsuario(EntityManager em, Empleado empleado) {
+		List<Proyecto> proyectos = new ArrayList<Proyecto>();
+		return proyectos;
 	}
 
 

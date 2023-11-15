@@ -3,11 +3,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.componentes.ulatina.modelo.Proyecto;
+import com.componentes.ulatina.modelo.Empleado;
 
 
 public interface IMantenimientoProyecto <E> {
 	public void insertar(EntityManager em, E obj);
-	public Proyecto proyectoPorId(EntityManager em, int id);
+	public E proyectoPorId(EntityManager em, int id);
 	public List<E> listar(EntityManager em);
+	public List<E> listarPorUsuario(EntityManager em, Empleado empleado);
 }
