@@ -1,7 +1,6 @@
 package com.componentes.ulatina.modelo;
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDateTime;
 
 
 import javax.persistence.*;
@@ -23,21 +22,21 @@ public class DetalleCurriculum implements Serializable{
 	@JoinColumn(name = "tipoDetalleCurriculum", nullable = false)
 	Detalle tipoDetalleCurriculum;
 	@ManyToOne
-	@JoinColumn(name = "curriculum", nullable = false)
-	Curriculum curriculum;
+	@JoinColumn(name = "empleado", nullable = false)
+	Empleado empleado;
 	
 	public DetalleCurriculum() {
 		
 	}
 	public DetalleCurriculum(int id, String titulo, String descripcion, Date fechaInicio, Date fechaFinal,
-			Detalle tipoDetalleCurriculum, Curriculum curriculum) {
+			Detalle tipoDetalleCurriculum, Empleado empleado) {
 		this.id = id;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.fechaInicio = fechaInicio;
 		this.fechaFinal = fechaFinal;
 		this.tipoDetalleCurriculum = tipoDetalleCurriculum;
-		this.curriculum = curriculum;
+		this.empleado = empleado;
 	}
 	public int getId() {
 		return id;
@@ -75,10 +74,10 @@ public class DetalleCurriculum implements Serializable{
 	public void setTipoDetalleCurriculum(Detalle tipoDetalleCurriculum) {
 		this.tipoDetalleCurriculum = tipoDetalleCurriculum;
 	}
-	public Curriculum getCurriculum() {
-		return curriculum;
+	public Empleado getCurriculum() {
+		return empleado;
 	}
-	public void setCurriculum(Curriculum curriculum) {
-		this.curriculum = curriculum;
+	public void setCurriculum(Empleado empleado) {
+		this.empleado = empleado;
 	}
 }
