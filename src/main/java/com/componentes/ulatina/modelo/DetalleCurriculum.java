@@ -5,6 +5,8 @@ import java.sql.Date;
 
 import javax.persistence.*;
 @Entity
+@NamedQueries(value = {
+		@NamedQuery(name = "DetalleCurriculum.buscarTodosDetalles", query = "SELECT dc FROM DetalleCurriculum dc")})
 @Table(name="comp_detalle_curriculum")
 public class DetalleCurriculum implements Serializable{
 	@Id

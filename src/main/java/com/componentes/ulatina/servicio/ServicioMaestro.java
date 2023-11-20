@@ -10,14 +10,26 @@ public class ServicioMaestro implements IMantenimientoMaestro<Maestro>{
 
 	@Override
 	public Maestro maestroPorId(EntityManager em, int id) {
-		Maestro meastro = new Maestro();
-		return meastro;
+		Maestro maestro = new Maestro();
+		try {
+			maestro = (Maestro) em.createNamedQuery("Maestro.maestroPorId")
+					.setParameter("idParam", new Integer(id)).getSingleResult();
+		}catch (Exception e) {
+			
+		}
+		return maestro;
 	}
 	
 	@Override
 	public Maestro maestroPorCodigoGeneral(EntityManager em, String codigoGeneral) {
-		Maestro meastro = new Maestro();
-		return meastro;
+		Maestro maestro = new Maestro();
+		try {
+			maestro = (Maestro) em.createNamedQuery("Maestro.maestroPorCodigoGeneral")
+					.setParameter("codigoGeneralParam", new String(codigoGeneral)).getSingleResult();
+		}catch (Exception e) {
+			
+		}
+		return maestro;
 	}
 
 }

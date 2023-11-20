@@ -3,6 +3,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 @Entity
+@NamedQueries(value = {
+		@NamedQuery(name = "TareaProyecto.buscarTodasTareas", query = "SELECT tp FROM TareaProyecto tp")})
 @Table(name = "comp_tarea_proyecto")
 public class TareaProyecto implements Serializable{
 	@Id

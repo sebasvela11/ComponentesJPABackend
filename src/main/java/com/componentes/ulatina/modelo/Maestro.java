@@ -6,6 +6,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries(value = {
+		@NamedQuery(name = "Maestro.maestroPorId", query = "SELECT m FROM Maestro m WHERE m.id = :idParam"),
+		@NamedQuery(name = "Maestro.maestroPorCodigoGeneral", query = "SELECT m FROM Maestro m WHERE m.codigoGeneral = :codigoGeneralParam") })
 @Table(name = "comp_maestro")
 public class Maestro implements Serializable{
 

@@ -4,6 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries(value = {
+		@NamedQuery(name = "Detalle.detallePorId", query = "SELECT d FROM Detalle d WHERE d.id = :idParam"),
+		@NamedQuery(name = "Detalle.detallePorCodigoGeneral", query = "SELECT d FROM Detalle d WHERE d.codigoGeneral = :codigoGeneralParam") })
 @Table(name = "comp_detalle")
 public class Detalle implements Serializable{
 	@Id

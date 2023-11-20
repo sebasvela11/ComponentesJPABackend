@@ -5,6 +5,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries(value = {
+		@NamedQuery(name = "Empleado.validarUsuario", query = "SELECT e FROM Empleado e WHERE e.contrasena = :contrasenaParam AND e.correoEmpresa = :correoEmpresaParam"),
+		@NamedQuery(name = "Empleado.buscarTodosEmpleados", query = "SELECT e FROM Empleado e")})
 @Table(name = "comp_empleado")
 public class Empleado implements Serializable{
 	@Id
@@ -20,6 +23,8 @@ public class Empleado implements Serializable{
 	String correoPersonal;
 	@Column(name = "numeroTelefono ", nullable = false, unique = true)
 	String numeroTelefono;
+	@Column(name = "contrasena ", nullable = false)
+	String contrasena;
 	@Column(name = "edad ", nullable = false)
 	int edad;
 	@ManyToOne
@@ -32,7 +37,7 @@ public class Empleado implements Serializable{
 
 	}
 	public Empleado(int id, String nombre, String apellidos, String correoEmpresa, String correoPersonal,
-			String numeroTelefono, int edad, Detalle genero, Detalle rol) {
+			String numeroTelefono, String contrasena, int edad, Detalle genero, Detalle rol) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -42,6 +47,7 @@ public class Empleado implements Serializable{
 		this.edad = edad;
 		this.genero = genero;
 		this.rol = rol;
+		this.contrasena = contrasena;
 	}
 	public int getId() {
 		return id;
@@ -96,5 +102,11 @@ public class Empleado implements Serializable{
 	}
 	public void setRol(Detalle rol) {
 		this.rol = rol;
+	}
+	public String getContrasena() {
+		return contrasena;
+	}
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 }

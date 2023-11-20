@@ -4,17 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import com.componentes.ulatina.imantenimiento.IMantenimientoProyecto;
 import com.componentes.ulatina.modelo.Detalle;
 import com.componentes.ulatina.modelo.Empleado;
 import com.componentes.ulatina.modelo.Proyecto;
+import com.componentes.ulatina.modelo.TareaProyecto;
 
 public class ServicioProyecto implements IMantenimientoProyecto<Proyecto>{
 
 	@Override
 	public void insertar(EntityManager em, Proyecto obj) {
-
+		em.getTransaction().begin();
+        em.persist(obj);
+        em.getTransaction().commit();
 	}
 
 	@Override
@@ -26,9 +30,8 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto>{
 
 	@Override
 	public List<Proyecto> listar(EntityManager em) {
-		List<Proyecto> proyectos = new ArrayList<Proyecto>();
-		return proyectos;
-	
+		TypedQuery<Proyecto> proyectos = em.createNamedQuery("Proyecto.buscarTodosProyectos", Proyecto.class);
+		return proyectos.getResultList();
 	}
 
 

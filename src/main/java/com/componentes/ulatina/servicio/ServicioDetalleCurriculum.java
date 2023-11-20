@@ -2,11 +2,9 @@ package com.componentes.ulatina.servicio;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.EntityManager;
-
+import javax.persistence.TypedQuery;
 import com.componentes.ulatina.imantenimiento.IMantenimientoDetalleCurriculum;
-import com.componentes.ulatina.modelo.Curriculum;
 import com.componentes.ulatina.modelo.Detalle;
 import com.componentes.ulatina.modelo.DetalleCurriculum;
 import com.componentes.ulatina.modelo.Empleado;
@@ -15,8 +13,9 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 
 	@Override
 	public void insertar(EntityManager em, DetalleCurriculum obj) {
-		
-		
+		em.getTransaction().begin();
+        em.persist(obj);
+        em.getTransaction().commit();
 	}
 
 	@Override
@@ -27,8 +26,8 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 
 	@Override
 	public List<DetalleCurriculum> listar(EntityManager em) {
-		List<DetalleCurriculum> detalleCurriculum = new ArrayList<DetalleCurriculum>();
-		return detalleCurriculum;
+		TypedQuery<DetalleCurriculum> detallesCurriculum = em.createNamedQuery("DetalleCurriculum.buscarTodosDetalles", DetalleCurriculum.class);
+		return detallesCurriculum.getResultList();
 	}
 
 	@Override

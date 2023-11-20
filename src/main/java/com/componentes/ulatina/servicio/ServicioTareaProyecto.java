@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import com.componentes.ulatina.imantenimiento.IMantenimientoTareaProyecto;
 import com.componentes.ulatina.modelo.Detalle;
+import com.componentes.ulatina.modelo.DetalleCurriculum;
 import com.componentes.ulatina.modelo.Empleado;
 import com.componentes.ulatina.modelo.Proyecto;
 import com.componentes.ulatina.modelo.TareaProyecto;
@@ -15,8 +17,9 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 
 	@Override
 	public void insertar(EntityManager em, TareaProyecto obj) {
-		
-		
+		em.getTransaction().begin();
+        em.persist(obj);
+        em.getTransaction().commit();
 	}
 
 	@Override
@@ -27,8 +30,8 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 
 	@Override
 	public List<TareaProyecto> listar(EntityManager em) {
-		List<TareaProyecto> tareasProyecto = new ArrayList<TareaProyecto>();
-		return tareasProyecto;
+		TypedQuery<TareaProyecto> tareasProyecto = em.createNamedQuery("TareaProyecto.buscarTodasTareas", TareaProyecto.class);
+		return tareasProyecto.getResultList();
 	}
 
 	@Override
