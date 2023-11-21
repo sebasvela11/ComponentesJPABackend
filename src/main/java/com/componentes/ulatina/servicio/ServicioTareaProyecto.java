@@ -13,13 +13,17 @@ import com.componentes.ulatina.modelo.Empleado;
 import com.componentes.ulatina.modelo.Proyecto;
 import com.componentes.ulatina.modelo.TareaProyecto;
 
-public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaProyecto>{
+public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaProyecto> {
 
 	@Override
 	public void insertar(EntityManager em, TareaProyecto obj) {
-		em.getTransaction().begin();
-        em.persist(obj);
-        em.getTransaction().commit();
+		try {
+			em.getTransaction().begin();
+			em.persist(obj);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -30,7 +34,12 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 
 	@Override
 	public List<TareaProyecto> listar(EntityManager em) {
-		TypedQuery<TareaProyecto> tareasProyecto = em.createNamedQuery("TareaProyecto.buscarTodasTareas", TareaProyecto.class);
+		TypedQuery<TareaProyecto> tareasProyecto = null;
+		try {
+			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarTodasTareas",TareaProyecto.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return tareasProyecto.getResultList();
 	}
 

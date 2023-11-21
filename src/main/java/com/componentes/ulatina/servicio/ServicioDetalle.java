@@ -15,7 +15,7 @@ public class ServicioDetalle implements IMantenimientoDetalle<Detalle>{
 			detalle = (Detalle) em.createNamedQuery("Detalle.detallePorId")
 					.setParameter("idParam", new Integer(id)).getSingleResult();
 		}catch (Exception e) {
-			
+			e.printStackTrace();	
 		}
 		return detalle;
 	}
@@ -27,7 +27,7 @@ public class ServicioDetalle implements IMantenimientoDetalle<Detalle>{
 			detalle = (Detalle) em.createNamedQuery("Detalle.detallePorCodigoGeneral")
 					.setParameter("codigoGeneralParam", new String(codigoGeneral)).getSingleResult();
 		}catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 		return detalle;
 	}

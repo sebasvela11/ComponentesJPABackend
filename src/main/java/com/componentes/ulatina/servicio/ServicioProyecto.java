@@ -16,9 +16,13 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto>{
 
 	@Override
 	public void insertar(EntityManager em, Proyecto obj) {
-		em.getTransaction().begin();
-        em.persist(obj);
-        em.getTransaction().commit();
+		try {
+			em.getTransaction().begin();
+			em.persist(obj);
+			em.getTransaction().commit();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -30,7 +34,12 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto>{
 
 	@Override
 	public List<Proyecto> listar(EntityManager em) {
-		TypedQuery<Proyecto> proyectos = em.createNamedQuery("Proyecto.buscarTodosProyectos", Proyecto.class);
+		TypedQuery<Proyecto> proyectos = null;
+		try {
+			proyectos = em.createNamedQuery("Proyecto.buscarTodosProyectos", Proyecto.class);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		return proyectos.getResultList();
 	}
 

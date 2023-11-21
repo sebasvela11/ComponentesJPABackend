@@ -12,9 +12,13 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 
 	@Override
 	public void insertar (EntityManager em, Empleado empleado) {
-		em.getTransaction().begin();
-        em.persist(empleado);
-        em.getTransaction().commit();
+		try {
+			em.getTransaction().begin();
+			em.persist(empleado);
+			em.getTransaction().commit();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -24,7 +28,7 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 			empleado = (Empleado) em.createNamedQuery("Empleado.validarUsuario")
 					.setParameter("correoEmpresaParam", new String(creedencial)).setParameter("contrasenaParam", new String(contrasena)).getSingleResult();
 		}catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 		return empleado;
 	}
@@ -37,7 +41,12 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 	
 	@Override
 	public List<Empleado> listar(EntityManager em){
-		TypedQuery<Empleado> empleados = em.createNamedQuery("Empleado.buscarTodosEmpleados", Empleado.class);
+		TypedQuery<Empleado> empleados = null;
+		try {
+			empleados = em.createNamedQuery("Empleado.buscarTodosEmpleados", Empleado.class);	
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		return empleados.getResultList();
 	}
 

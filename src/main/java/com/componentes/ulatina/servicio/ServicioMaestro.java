@@ -15,7 +15,7 @@ public class ServicioMaestro implements IMantenimientoMaestro<Maestro>{
 			maestro = (Maestro) em.createNamedQuery("Maestro.maestroPorId")
 					.setParameter("idParam", new Integer(id)).getSingleResult();
 		}catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 		return maestro;
 	}
@@ -27,7 +27,7 @@ public class ServicioMaestro implements IMantenimientoMaestro<Maestro>{
 			maestro = (Maestro) em.createNamedQuery("Maestro.maestroPorCodigoGeneral")
 					.setParameter("codigoGeneralParam", new String(codigoGeneral)).getSingleResult();
 		}catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 		return maestro;
 	}

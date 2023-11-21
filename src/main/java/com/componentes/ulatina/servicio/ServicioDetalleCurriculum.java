@@ -9,13 +9,17 @@ import com.componentes.ulatina.modelo.Detalle;
 import com.componentes.ulatina.modelo.DetalleCurriculum;
 import com.componentes.ulatina.modelo.Empleado;
 
-public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculum<DetalleCurriculum>{
+public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculum<DetalleCurriculum> {
 
 	@Override
 	public void insertar(EntityManager em, DetalleCurriculum obj) {
-		em.getTransaction().begin();
-        em.persist(obj);
-        em.getTransaction().commit();
+		try {
+			em.getTransaction().begin();
+			em.persist(obj);
+			em.getTransaction().commit();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -26,7 +30,12 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 
 	@Override
 	public List<DetalleCurriculum> listar(EntityManager em) {
-		TypedQuery<DetalleCurriculum> detallesCurriculum = em.createNamedQuery("DetalleCurriculum.buscarTodosDetalles", DetalleCurriculum.class);
+		TypedQuery<DetalleCurriculum> detallesCurriculum = null;
+		try {
+			detallesCurriculum = em.createNamedQuery("DetalleCurriculum.buscarTodosDetalles", DetalleCurriculum.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return detallesCurriculum.getResultList();
 	}
 
