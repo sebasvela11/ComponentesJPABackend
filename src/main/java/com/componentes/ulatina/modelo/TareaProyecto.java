@@ -4,7 +4,13 @@ import java.io.Serializable;
 import javax.persistence.*;
 @Entity
 @NamedQueries(value = {
-		@NamedQuery(name = "TareaProyecto.buscarTodasTareas", query = "SELECT tp FROM TareaProyecto tp")})
+        @NamedQuery(name = "TareaProyecto.buscarTodasTareas", query = "SELECT tp FROM TareaProyecto tp"),
+        @NamedQuery(name = "TareaProyecto.buscarPorId", query = "SELECT t FROM TareaProyecto t WHERE t.id = :idParam"),
+        @NamedQuery(name = "TareaProyecto.buscarPorProyecto", query = "SELECT t FROM TareaProyecto t WHERE t.proyecto = :proyectoParam"),
+        @NamedQuery(name = "TareaProyecto.buscarPorEmpleado", query = "SELECT t FROM TareaProyecto t WHERE t.empleado = :empleadoParam"),
+        @NamedQuery(name = "TareaProyecto.buscarPorEmpleadoProyecto", query = "SELECT t FROM TareaProyecto t WHERE t.empleado = :empleadoParam AND t.proyecto = :proyectoParam"),
+        @NamedQuery(name = "TareaProyecto.buscarPorTipo", query = "SELECT t FROM TareaProyecto t WHERE t.tipoTarea = :tipoTareaParam")
+})
 @Table(name = "comp_tarea_proyecto")
 public class TareaProyecto implements Serializable{
 	@Id

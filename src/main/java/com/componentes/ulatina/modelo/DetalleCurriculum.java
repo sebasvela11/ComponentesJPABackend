@@ -6,8 +6,13 @@ import java.sql.Date;
 import javax.persistence.*;
 @Entity
 @NamedQueries(value = {
-		@NamedQuery(name = "DetalleCurriculum.buscarTodosDetalles", query = "SELECT dc FROM DetalleCurriculum dc")})
+		@NamedQuery(name = "DetalleCurriculum.buscarTodosDetalles", query = "SELECT dc FROM DetalleCurriculum dc"),
+		@NamedQuery (name = "DetalleCurriculum.detalleCurriculumPorId", query = "SELECT dc FROM  DetalleCurriculum dc WHERE dc.id = :idParam"),
+		@NamedQuery (name = "DetalleCurriculum.buscarPorTipo", query = "SELECT dc FROM DetalleCurriculum dc WHERE dc.tipoDetalleCurriculum = :detalleParam"),
+		@NamedQuery (name = "DetalleCurriculum.buscarPorEmpleado", query = "SELECT dc FROM DetalleCurriculum dc WHERE dc.empleado = :empleadoParam"),
+		@NamedQuery (name = "DetalleCurriculum.buscarPorTipoDeEmpleado", query = "SELECT dc FROM DetalleCurriculum dc WHERE dc.empleado = :empleadoParam AND dc.tipoDetalleCurriculum = :tipoDetalleCurriculumParam" )})
 @Table(name="comp_detalle_curriculum")
+
 public class DetalleCurriculum implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

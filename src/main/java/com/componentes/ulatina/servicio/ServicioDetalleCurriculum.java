@@ -1,6 +1,5 @@
 package com.componentes.ulatina.servicio;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -26,7 +25,8 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 	public DetalleCurriculum detalleCurriculumPorId(EntityManager em, int id) {
 		DetalleCurriculum detalleCurriculum = new DetalleCurriculum();
 		try {
-
+			detalleCurriculum = (DetalleCurriculum) em.createNamedQuery("DetalleCurriculum.buscarPorId")
+					.setParameter("idParam", new Integer(id)).getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -46,20 +46,35 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 
 	@Override
 	public List<DetalleCurriculum> listarPorTipo(EntityManager em, Detalle detalle) {
-		List<DetalleCurriculum> detalleCurriculum = new ArrayList<DetalleCurriculum>();
-		return detalleCurriculum;
+		TypedQuery<DetalleCurriculum> detalleCurriculum = null;
+		try {
+			detalleCurriculum = em.createNamedQuery("DetalleCurriculum.buscarPorTipo", DetalleCurriculum.class).setParameter("detalleParam", detalle);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return detalleCurriculum.getResultList();
 	}
 
 	@Override
 	public List<DetalleCurriculum> listarPorEmpleado(EntityManager em, Empleado empleado) {
-		List<DetalleCurriculum> detalleCurriculum = new ArrayList<DetalleCurriculum>();
-		return detalleCurriculum;
+		TypedQuery<DetalleCurriculum> detalleCurriculum = null;
+		try {
+			detalleCurriculum = em.createNamedQuery("DetalleCurriculm.buscarPorEmpleado",DetalleCurriculum.class).setParameter("empleadoParam", empleado);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return detalleCurriculum.getResultList();
 	}
 
 	@Override
 	public List<DetalleCurriculum> listarPorTipoEmpleado(EntityManager em, Empleado empleado, Detalle detalle) {
-		List<DetalleCurriculum> detalleCurriculum = new ArrayList<DetalleCurriculum>();
-		return detalleCurriculum;
+		TypedQuery<DetalleCurriculum> detalleCurriculum = null;
+		try {
+			detalleCurriculum = em.createNamedQuery("DetalleCurriculum.buscarTipoDeDetalle", DetalleCurriculum.class).setParameter("empleadoParam", empleado).setParameter("tipoDetalleCurriculumParam",detalle);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return detalleCurriculum.getResultList();
 	}
 
 }

@@ -6,8 +6,11 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries(value = {
-		@NamedQuery(name = "Proyecto.buscarTodosProyectos", query = "SELECT p FROM Proyecto p")})
+@NamedQuery(name = "Proyecto.buscarTodosProyectos", query = "SELECT p FROM Proyecto p"),
+@NamedQuery(name = "Proyecto.buscarPorId", query = "SELECT p FROM Proyecto p WHERE p.id = :idParam"),
+@NamedQuery(name = "Proyecto.buscarPorEstado", query = "SELECT P FROM Proyecto p WHERE p.estado = :estadoParam ")})
 @Table(name = "comp_proyecto")
+
 public class Proyecto implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,7 +10,6 @@ import com.componentes.ulatina.imantenimiento.IMantenimientoProyecto;
 import com.componentes.ulatina.modelo.Detalle;
 import com.componentes.ulatina.modelo.Empleado;
 import com.componentes.ulatina.modelo.Proyecto;
-import com.componentes.ulatina.modelo.TareaProyecto;
 
 public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 
@@ -29,6 +28,8 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 	public Proyecto proyectoPorId(EntityManager em, int id) {
 		Proyecto proyecto = new Proyecto();
 		try {
+			proyecto = (Proyecto) em.createNamedQuery("Proyecto.buscarPorId").setParameter("idParam", new Integer(id))
+					.getSingleResult();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -56,8 +57,14 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 
 	@Override
 	public List<Proyecto> listarPorEstado(EntityManager em, Detalle detalle) {
-		List<Proyecto> proyectos = new ArrayList<Proyecto>();
-		return proyectos;
+		TypedQuery<Proyecto> proyectos = null;
+		try {
+			proyectos = em.createNamedQuery("Proyecto.buscarPorEstado", Proyecto.class).setParameter("estadoParam", detalle);	
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return proyectos.getResultList();
+	
 	}
 
 	@Override

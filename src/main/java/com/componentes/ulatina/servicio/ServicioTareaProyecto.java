@@ -1,6 +1,5 @@
 package com.componentes.ulatina.servicio;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,7 +7,6 @@ import javax.persistence.TypedQuery;
 
 import com.componentes.ulatina.imantenimiento.IMantenimientoTareaProyecto;
 import com.componentes.ulatina.modelo.Detalle;
-import com.componentes.ulatina.modelo.DetalleCurriculum;
 import com.componentes.ulatina.modelo.Empleado;
 import com.componentes.ulatina.modelo.Proyecto;
 import com.componentes.ulatina.modelo.TareaProyecto;
@@ -28,10 +26,11 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 
 	@Override
 	public TareaProyecto tereaProyectoPorId(EntityManager em, int id) {
-		TareaProyecto tareaProyecto = new TareaProyecto();
+		TareaProyecto tareaProyecto = null;
 		try {
-			
-		}catch(Exception e) {
+			tareaProyecto = (TareaProyecto) em.createNamedQuery("TareaProyecto.buscarPorId")
+					.setParameter("idParam", new Integer(id)).getSingleResult();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return tareaProyecto;
@@ -41,7 +40,7 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 	public List<TareaProyecto> listar(EntityManager em) {
 		TypedQuery<TareaProyecto> tareasProyecto = null;
 		try {
-			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarTodasTareas",TareaProyecto.class);
+			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarTodasTareas", TareaProyecto.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -50,26 +49,55 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 
 	@Override
 	public List<TareaProyecto> listarPorProyecto(EntityManager em, Proyecto proyecto) {
-		List<TareaProyecto> tareasProyecto = new ArrayList<TareaProyecto>();
-		return tareasProyecto;
+		TypedQuery<TareaProyecto> tareasProyecto = null;
+		try {
+			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarPorProyecto",
+					TareaProyecto.class);
+			tareasProyecto.setParameter("proyectoParam", proyecto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tareasProyecto.getResultList();
 	}
 
 	@Override
 	public List<TareaProyecto> listarPorEmpleado(EntityManager em, Empleado empleado) {
-		List<TareaProyecto> tareasProyecto = new ArrayList<TareaProyecto>();
-		return tareasProyecto;
+		TypedQuery<TareaProyecto> tareasProyecto = null;
+		try {
+			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarPorEmpleado",
+					TareaProyecto.class);
+			tareasProyecto.setParameter("empleadoParam", empleado);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tareasProyecto.getResultList();
 	}
 
 	@Override
 	public List<TareaProyecto> listarPorEmpleadoProyecto(EntityManager em, Empleado empleado, Proyecto proyecto) {
-		List<TareaProyecto> tareasProyecto = new ArrayList<TareaProyecto>();
-		return tareasProyecto;
+		TypedQuery<TareaProyecto> tareasProyecto = null;
+		try {
+			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarPorEmpleadoProyecto",
+					TareaProyecto.class);
+			tareasProyecto.setParameter("empleadoParam", empleado);
+			tareasProyecto.setParameter("proyectoParam", proyecto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tareasProyecto.getResultList();
 	}
 
 	@Override
 	public List<TareaProyecto> listarPorTipo(EntityManager em, Detalle detalle) {
-		List<TareaProyecto> tareasProyecto = new ArrayList<TareaProyecto>();
-		return tareasProyecto;
+		TypedQuery<TareaProyecto> tareasProyecto = null;
+		try {
+			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarPorTipo",
+					TareaProyecto.class);
+			tareasProyecto.setParameter("detalleParam", detalle);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tareasProyecto.getResultList();
 	}
 
 }

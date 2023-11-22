@@ -1,10 +1,7 @@
 package com.componentes.ulatina.servicio;
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-
 import com.componentes.ulatina.imantenimiento.*;
 import com.componentes.ulatina.modelo.*;
 
