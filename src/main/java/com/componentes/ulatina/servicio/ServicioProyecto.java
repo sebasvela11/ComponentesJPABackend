@@ -12,7 +12,7 @@ import com.componentes.ulatina.modelo.Empleado;
 import com.componentes.ulatina.modelo.Proyecto;
 import com.componentes.ulatina.modelo.TareaProyecto;
 
-public class ServicioProyecto implements IMantenimientoProyecto<Proyecto>{
+public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 
 	@Override
 	public void insertar(EntityManager em, Proyecto obj) {
@@ -20,16 +20,21 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto>{
 			em.getTransaction().begin();
 			em.persist(obj);
 			em.getTransaction().commit();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public Proyecto proyectoPorId(EntityManager em, int id) {
-		Proyecto proyecto = new Proyecto ();
+		Proyecto proyecto = new Proyecto();
+		try {
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return proyecto;
-		
+
 	}
 
 	@Override
@@ -37,12 +42,11 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto>{
 		TypedQuery<Proyecto> proyectos = null;
 		try {
 			proyectos = em.createNamedQuery("Proyecto.buscarTodosProyectos", Proyecto.class);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return proyectos.getResultList();
 	}
-
 
 	@Override
 	public List<Proyecto> listarPorEmpleado(EntityManager em, Empleado empleado) {
@@ -61,7 +65,5 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto>{
 		List<Proyecto> proyectos = new ArrayList<Proyecto>();
 		return proyectos;
 	}
-
-
 
 }

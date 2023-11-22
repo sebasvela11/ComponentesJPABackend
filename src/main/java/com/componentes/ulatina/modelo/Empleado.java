@@ -7,7 +7,9 @@ import javax.persistence.*;
 @Entity
 @NamedQueries(value = {
 		@NamedQuery(name = "Empleado.validarUsuario", query = "SELECT e FROM Empleado e WHERE e.contrasena = :contrasenaParam AND e.correoEmpresa = :correoEmpresaParam"),
-		@NamedQuery(name = "Empleado.buscarTodosEmpleados", query = "SELECT e FROM Empleado e")})
+		@NamedQuery(name = "Empleado.buscarTodosEmpleados", query = "SELECT e FROM Empleado e"),
+		@NamedQuery(name = "Empleado.buscarPorId", query = "SELECT e FROM Empleado e WHERE e.id = :idParam"),
+		@NamedQuery(name = "Empleado.buscarPorRol", query = "SELECT e FROM Empleado e WHERE e.rol = :detalleParam")})
 @Table(name = "comp_empleado")
 public class Empleado implements Serializable{
 	@Id

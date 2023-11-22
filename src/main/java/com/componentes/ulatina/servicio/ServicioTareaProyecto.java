@@ -29,6 +29,11 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 	@Override
 	public TareaProyecto tereaProyectoPorId(EntityManager em, int id) {
 		TareaProyecto tareaProyecto = new TareaProyecto();
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		return tareaProyecto;
 	}
 

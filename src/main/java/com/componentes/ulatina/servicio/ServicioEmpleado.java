@@ -36,6 +36,12 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 	@Override
 	public Empleado empleadoPorId(EntityManager em, int id) {
 		Empleado empleado = new Empleado();
+		try {
+			empleado = (Empleado) em.createNamedQuery("Empleado.buscarPorId")
+					.setParameter("idParam", new Integer(id)).getSingleResult();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		return empleado;
 	}
 	
@@ -52,7 +58,12 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 
 	@Override
 	public List<Empleado> listarPorRol(EntityManager em, Detalle detalle) {
-		List<Empleado> empleados = new ArrayList<Empleado>();
-		return empleados;
+		TypedQuery<Empleado> empleados = null;
+		try {
+			empleados = em.createNamedQuery("Empleado.buscarPorRol", Empleado.class).setParameter("detalleParam", detalle);	
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return empleados.getResultList();
 	}
 }

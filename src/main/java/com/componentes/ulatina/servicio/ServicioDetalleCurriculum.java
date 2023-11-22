@@ -17,7 +17,7 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 			em.getTransaction().begin();
 			em.persist(obj);
 			em.getTransaction().commit();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -25,6 +25,11 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 	@Override
 	public DetalleCurriculum detalleCurriculumPorId(EntityManager em, int id) {
 		DetalleCurriculum detalleCurriculum = new DetalleCurriculum();
+		try {
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return detalleCurriculum;
 	}
 
