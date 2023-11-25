@@ -35,6 +35,15 @@ public class DetalleCurriculum implements Serializable{
 	public DetalleCurriculum() {
 		
 	}
+	public DetalleCurriculum( String titulo, String descripcion, Date fechaInicio, Date fechaFinal,
+			Detalle tipoDetalleCurriculum, Empleado empleado) {
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.fechaInicio = fechaInicio;
+		this.fechaFinal = fechaFinal;
+		this.tipoDetalleCurriculum = tipoDetalleCurriculum;
+		this.empleado = empleado;
+	}
 	public DetalleCurriculum(int id, String titulo, String descripcion, Date fechaInicio, Date fechaFinal,
 			Detalle tipoDetalleCurriculum, Empleado empleado) {
 		this.id = id;

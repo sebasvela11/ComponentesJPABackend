@@ -35,6 +35,15 @@ public class TareaProyecto implements Serializable{
 	public TareaProyecto() {
 		
 	}
+	public TareaProyecto( Proyecto proyecto, Empleado empleado, String tituloTarea, Double tiempoInvertido,
+			Detalle tipoTarea, Detalle estado) {
+		this.proyecto = proyecto;
+		this.empleado = empleado;
+		this.tituloTarea = tituloTarea;
+		this.tiempoInvertido = tiempoInvertido;
+		this.tipoTarea = tipoTarea;
+		this.estado = estado;
+	}
 	public TareaProyecto(int id, Proyecto proyecto, Empleado empleado, String tituloTarea, Double tiempoInvertido,
 			Detalle tipoTarea, Detalle estado) {
 		this.id = id;

@@ -12,8 +12,10 @@ public class ServicioDetalle implements IMantenimientoDetalle<Detalle>{
 	public Detalle detallePorId(EntityManager em, int id) {
 		Detalle detalle = new Detalle();
 		try {
+			em.getTransaction().begin();
 			detalle = (Detalle) em.createNamedQuery("Detalle.detallePorId")
 					.setParameter("idParam", new Integer(id)).getSingleResult();
+			em.getTransaction().commit();
 		}catch (Exception e) {
 			e.printStackTrace();	
 		}
@@ -24,8 +26,10 @@ public class ServicioDetalle implements IMantenimientoDetalle<Detalle>{
 	public Detalle detallePorCodigoGeneral(EntityManager em, String codigoGeneral) {
 		Detalle detalle = new Detalle();
 		try {
+			em.getTransaction().begin();
 			detalle = (Detalle) em.createNamedQuery("Detalle.detallePorCodigoGeneral")
 					.setParameter("codigoGeneralParam", new String(codigoGeneral)).getSingleResult();
+			em.getTransaction().commit();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

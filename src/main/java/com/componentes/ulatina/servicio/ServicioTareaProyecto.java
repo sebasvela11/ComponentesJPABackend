@@ -28,8 +28,10 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 	public TareaProyecto tereaProyectoPorId(EntityManager em, int id) {
 		TareaProyecto tareaProyecto = null;
 		try {
+			em.getTransaction().begin();
 			tareaProyecto = (TareaProyecto) em.createNamedQuery("TareaProyecto.buscarPorId")
 					.setParameter("idParam", new Integer(id)).getSingleResult();
+			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -40,7 +42,9 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 	public List<TareaProyecto> listar(EntityManager em) {
 		TypedQuery<TareaProyecto> tareasProyecto = null;
 		try {
+			em.getTransaction().begin();
 			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarTodasTareas", TareaProyecto.class);
+			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,9 +55,10 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 	public List<TareaProyecto> listarPorProyecto(EntityManager em, Proyecto proyecto) {
 		TypedQuery<TareaProyecto> tareasProyecto = null;
 		try {
-			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarPorProyecto",
-					TareaProyecto.class);
-			tareasProyecto.setParameter("proyectoParam", proyecto);
+			em.getTransaction().begin();
+			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarPorProyecto",TareaProyecto.class)
+					.setParameter("proyectoParam", proyecto);
+			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -64,9 +69,10 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 	public List<TareaProyecto> listarPorEmpleado(EntityManager em, Empleado empleado) {
 		TypedQuery<TareaProyecto> tareasProyecto = null;
 		try {
-			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarPorEmpleado",
-					TareaProyecto.class);
-			tareasProyecto.setParameter("empleadoParam", empleado);
+			em.getTransaction().begin();
+			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarPorEmpleado",TareaProyecto.class)
+					.setParameter("empleadoParam", empleado);
+			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -77,10 +83,11 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 	public List<TareaProyecto> listarPorEmpleadoProyecto(EntityManager em, Empleado empleado, Proyecto proyecto) {
 		TypedQuery<TareaProyecto> tareasProyecto = null;
 		try {
-			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarPorEmpleadoProyecto",
-					TareaProyecto.class);
-			tareasProyecto.setParameter("empleadoParam", empleado);
-			tareasProyecto.setParameter("proyectoParam", proyecto);
+			em.getTransaction().begin();
+			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarPorEmpleadoProyecto",TareaProyecto.class)
+					.setParameter("empleadoParam", empleado)
+					.setParameter("proyectoParam", proyecto);
+			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -91,9 +98,10 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 	public List<TareaProyecto> listarPorTipo(EntityManager em, Detalle detalle) {
 		TypedQuery<TareaProyecto> tareasProyecto = null;
 		try {
-			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarPorTipo",
-					TareaProyecto.class);
-			tareasProyecto.setParameter("detalleParam", detalle);
+			em.getTransaction().begin();
+			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarPorTipo",TareaProyecto.class)
+					.setParameter("detalleParam", detalle);
+			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

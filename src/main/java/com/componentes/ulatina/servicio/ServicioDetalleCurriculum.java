@@ -25,8 +25,10 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 	public DetalleCurriculum detalleCurriculumPorId(EntityManager em, int id) {
 		DetalleCurriculum detalleCurriculum = new DetalleCurriculum();
 		try {
+			em.getTransaction().begin();
 			detalleCurriculum = (DetalleCurriculum) em.createNamedQuery("DetalleCurriculum.buscarPorId")
 					.setParameter("idParam", new Integer(id)).getSingleResult();
+			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -37,7 +39,9 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 	public List<DetalleCurriculum> listar(EntityManager em) {
 		TypedQuery<DetalleCurriculum> detallesCurriculum = null;
 		try {
+			em.getTransaction().begin();
 			detallesCurriculum = em.createNamedQuery("DetalleCurriculum.buscarTodosDetalles", DetalleCurriculum.class);
+			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,7 +52,10 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 	public List<DetalleCurriculum> listarPorTipo(EntityManager em, Detalle detalle) {
 		TypedQuery<DetalleCurriculum> detalleCurriculum = null;
 		try {
-			detalleCurriculum = em.createNamedQuery("DetalleCurriculum.buscarPorTipo", DetalleCurriculum.class).setParameter("detalleParam", detalle);
+			em.getTransaction().begin();
+			detalleCurriculum = em.createNamedQuery("DetalleCurriculum.buscarPorTipo", DetalleCurriculum.class)
+					.setParameter("detalleParam", detalle);
+			em.getTransaction().commit();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -59,7 +66,10 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 	public List<DetalleCurriculum> listarPorEmpleado(EntityManager em, Empleado empleado) {
 		TypedQuery<DetalleCurriculum> detalleCurriculum = null;
 		try {
-			detalleCurriculum = em.createNamedQuery("DetalleCurriculm.buscarPorEmpleado",DetalleCurriculum.class).setParameter("empleadoParam", empleado);
+			em.getTransaction().begin();
+			detalleCurriculum = em.createNamedQuery("DetalleCurriculm.buscarPorEmpleado",DetalleCurriculum.class)
+					.setParameter("empleadoParam", empleado);
+			em.getTransaction().commit();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -70,7 +80,11 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 	public List<DetalleCurriculum> listarPorTipoEmpleado(EntityManager em, Empleado empleado, Detalle detalle) {
 		TypedQuery<DetalleCurriculum> detalleCurriculum = null;
 		try {
-			detalleCurriculum = em.createNamedQuery("DetalleCurriculum.buscarTipoDeDetalle", DetalleCurriculum.class).setParameter("empleadoParam", empleado).setParameter("tipoDetalleCurriculumParam",detalle);
+			em.getTransaction().begin();
+			detalleCurriculum = em.createNamedQuery("DetalleCurriculum.buscarTipoDeDetalle", DetalleCurriculum.class)
+					.setParameter("empleadoParam", empleado)
+					.setParameter("tipoDetalleCurriculumParam",detalle);
+			em.getTransaction().commit();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

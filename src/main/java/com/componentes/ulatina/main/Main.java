@@ -1,10 +1,10 @@
-package com.componentes.ulatina.test;
+package com.componentes.ulatina.main;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class Test {
+public class Main {
 	
 	private static EntityManager em = null;
 	private static EntityManagerFactory entityManagerFactory = null;

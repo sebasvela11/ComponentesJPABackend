@@ -22,8 +22,11 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 	public Empleado validarUsuario(EntityManager em, String creedencial, String contrasena) {
 		Empleado empleado = new Empleado();
 		try {
+			em.getTransaction().begin();
 			empleado = (Empleado) em.createNamedQuery("Empleado.validarUsuario")
-					.setParameter("correoEmpresaParam", new String(creedencial)).setParameter("contrasenaParam", new String(contrasena)).getSingleResult();
+					.setParameter("correoEmpresaParam", new String(creedencial))
+					.setParameter("contrasenaParam", new String(contrasena)).getSingleResult();
+			em.getTransaction().commit();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -34,8 +37,10 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 	public Empleado empleadoPorId(EntityManager em, int id) {
 		Empleado empleado = new Empleado();
 		try {
+			em.getTransaction().begin();
 			empleado = (Empleado) em.createNamedQuery("Empleado.buscarPorId")
 					.setParameter("idParam", new Integer(id)).getSingleResult();
+			em.getTransaction().commit();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -46,7 +51,9 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 	public List<Empleado> listar(EntityManager em){
 		TypedQuery<Empleado> empleados = null;
 		try {
-			empleados = em.createNamedQuery("Empleado.buscarTodosEmpleados", Empleado.class);	
+			em.getTransaction().begin();
+			empleados = em.createNamedQuery("Empleado.buscarTodosEmpleados", Empleado.class);
+			em.getTransaction().commit();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,7 +64,10 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 	public List<Empleado> listarPorRol(EntityManager em, Detalle detalle) {
 		TypedQuery<Empleado> empleados = null;
 		try {
-			empleados = em.createNamedQuery("Empleado.buscarPorRol", Empleado.class).setParameter("detalleParam", detalle);	
+			em.getTransaction().begin();
+			empleados = em.createNamedQuery("Empleado.buscarPorRol", Empleado.class)
+					.setParameter("detalleParam", detalle);	
+			em.getTransaction().commit();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

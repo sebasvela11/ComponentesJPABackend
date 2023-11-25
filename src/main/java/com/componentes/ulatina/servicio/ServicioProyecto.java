@@ -1,11 +1,8 @@
 package com.componentes.ulatina.servicio;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-
 import com.componentes.ulatina.imantenimiento.IMantenimientoProyecto;
 import com.componentes.ulatina.modelo.Detalle;
 import com.componentes.ulatina.modelo.Empleado;
@@ -28,9 +25,10 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 	public Proyecto proyectoPorId(EntityManager em, int id) {
 		Proyecto proyecto = new Proyecto();
 		try {
-			proyecto = (Proyecto) em.createNamedQuery("Proyecto.buscarPorId").setParameter("idParam", new Integer(id))
-					.getSingleResult();
-
+			em.getTransaction().begin();
+			proyecto = (Proyecto) em.createNamedQuery("Proyecto.buscarPorId")
+					.setParameter("idParam", new Integer(id)).getSingleResult();
+			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -42,7 +40,9 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 	public List<Proyecto> listar(EntityManager em) {
 		TypedQuery<Proyecto> proyectos = null;
 		try {
+			em.getTransaction().begin();
 			proyectos = em.createNamedQuery("Proyecto.buscarTodosProyectos", Proyecto.class);
+			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,15 +51,26 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 
 	@Override
 	public List<Proyecto> listarPorEmpleado(EntityManager em, Empleado empleado) {
-		List<Proyecto> proyectos = new ArrayList<Proyecto>();
-		return proyectos;
+		TypedQuery<Proyecto> proyectos = null;
+		try {
+			em.getTransaction().begin();
+			proyectos = em.createNamedQuery("Proyecto.buscarPorEmpleado", Proyecto.class)
+					.setParameter("idUsuarioParam", new Integer(empleado.getId()));
+			em.getTransaction().commit();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return proyectos.getResultList();
 	}
 
 	@Override
 	public List<Proyecto> listarPorEstado(EntityManager em, Detalle detalle) {
 		TypedQuery<Proyecto> proyectos = null;
 		try {
-			proyectos = em.createNamedQuery("Proyecto.buscarPorEstado", Proyecto.class).setParameter("estadoParam", detalle);	
+			em.getTransaction().begin();
+			proyectos = em.createNamedQuery("Proyecto.buscarPorEstado", Proyecto.class)
+					.setParameter("estadoParam", detalle);	
+			em.getTransaction().commit();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -69,8 +80,17 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 
 	@Override
 	public List<Proyecto> listarPorEstadoEmpleado(EntityManager em, Detalle detalle, Empleado empleado) {
-		List<Proyecto> proyectos = new ArrayList<Proyecto>();
-		return proyectos;
+		TypedQuery<Proyecto> proyectos = null;
+		try {
+			em.getTransaction().begin();
+			proyectos = em.createNamedQuery("Proyecto.buscarPorEstadoEmpleado", Proyecto.class)
+					.setParameter("idUsuarioParam", new Integer(empleado.getId()))
+					.setParameter("idEstadoParam", new Integer(detalle.getId()));
+			em.getTransaction().commit();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return proyectos.getResultList();
 	}
 
 }
