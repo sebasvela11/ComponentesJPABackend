@@ -9,7 +9,7 @@ public class Main {
 	private static EntityManager em = null;
 	private static EntityManagerFactory entityManagerFactory = null;
 	
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		try {
 			startEntityManagerFactory("ComponentesJPABackend");
 			em = entityManagerFactory.createEntityManager();
@@ -21,7 +21,7 @@ public class Main {
 		}
 		
 	}
-	public static void startEntityManagerFactory(String persistenceUnit) throws Exception {
+	public void startEntityManagerFactory(String persistenceUnit) throws Exception {
 		if (entityManagerFactory == null) {
 			try {
 				entityManagerFactory = Persistence.createEntityManagerFactory(persistenceUnit);

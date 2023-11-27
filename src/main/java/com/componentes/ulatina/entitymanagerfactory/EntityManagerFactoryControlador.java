@@ -9,10 +9,10 @@ public class EntityManagerFactoryControlador {
 	private static EntityManager em = null;
 	private static EntityManagerFactory entityManagerFactory = null;
 	
-	public static void startEntityManagerFactory(String persistenceUnit) throws Exception {
+	public static void startEntityManagerFactory() throws Exception {
 		if (entityManagerFactory == null) {
 			try {
-				entityManagerFactory = Persistence.createEntityManagerFactory(persistenceUnit);
+				entityManagerFactory = Persistence.createEntityManagerFactory("ComponentesJPABackend");
 				em = entityManagerFactory.createEntityManager();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -32,4 +32,22 @@ public class EntityManagerFactoryControlador {
 			entityManagerFactory = null;
 		}
 	}
+
+	public static EntityManager getEm() {
+		return em;
+	}
+
+	public static void setEm(EntityManager em) {
+		EntityManagerFactoryControlador.em = em;
+	}
+
+	public static EntityManagerFactory getEntityManagerFactory() {
+		return entityManagerFactory;
+	}
+
+	public static void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+		EntityManagerFactoryControlador.entityManagerFactory = entityManagerFactory;
+	}
+	
+	
 }
