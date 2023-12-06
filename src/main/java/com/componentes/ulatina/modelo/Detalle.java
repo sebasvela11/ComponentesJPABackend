@@ -11,14 +11,14 @@ import javax.persistence.*;
 public class Detalle implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
+	private int id;
 	@Column(name = "codigoGeneral ", nullable = false, unique = true)
-	String codigoGeneral;
+	private String codigoGeneral;
 	@Column(name = "descripcion ", nullable = false, unique = true)
-	String descripcion;
+	private String descripcion;
 	@ManyToOne
 	@JoinColumn(name = "maestro", nullable = false)
-	Maestro maestro;	
+	private Maestro maestro;	
 	
 	public Detalle() {
 

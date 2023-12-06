@@ -9,50 +9,50 @@ import javax.persistence.*;
 		@NamedQuery(name = "DetalleCurriculum.buscarTodosDetalles", query = "SELECT dc FROM DetalleCurriculum dc"),
 		@NamedQuery (name = "DetalleCurriculum.detalleCurriculumPorId", query = "SELECT dc FROM  DetalleCurriculum dc WHERE dc.id = :idParam"),
 		@NamedQuery (name = "DetalleCurriculum.buscarPorTipo", query = "SELECT dc FROM DetalleCurriculum dc WHERE dc.tipoDetalleCurriculum = :detalleParam"),
-		@NamedQuery (name = "DetalleCurriculum.buscarPorEmpleado", query = "SELECT dc FROM DetalleCurriculum dc WHERE dc.empleado = :empleadoParam"),
-		@NamedQuery (name = "DetalleCurriculum.buscarPorTipoDeEmpleado", query = "SELECT dc FROM DetalleCurriculum dc WHERE dc.empleado = :empleadoParam AND dc.tipoDetalleCurriculum = :tipoDetalleCurriculumParam" )})
+		@NamedQuery (name = "DetalleCurriculum.buscarPorCurriculum", query = "SELECT dc FROM DetalleCurriculum dc WHERE dc.curriculum = :curriculumParam"),
+		@NamedQuery (name = "DetalleCurriculum.buscarPorTipoCurriculum", query = "SELECT dc FROM DetalleCurriculum dc WHERE dc.curriculum = :curriculumParam AND dc.tipoDetalleCurriculum = :tipoDetalleCurriculumParam" )})
 @Table(name="comp_detalle_curriculum")
 
 public class DetalleCurriculum implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
+	private int id;
 	@Column(name = "titulo", nullable = false)
-	String titulo;
+	private String titulo;
 	@Column(name = "descripcion ", nullable = false)
-	String descripcion;
+	private String descripcion;
 	@Column(name = "fechaInicio ", nullable = false)
-	Date fechaInicio;
+	private Date fechaInicio;
 	@Column(name = "fechaFinal ", nullable = false)
-	Date fechaFinal;
+	private Date fechaFinal;
 	@ManyToOne
 	@JoinColumn(name = "tipoDetalleCurriculum", nullable = false)
-	Detalle tipoDetalleCurriculum;
-	@ManyToOne
-	@JoinColumn(name = "empleado", nullable = false)
-	Empleado empleado;
+	private Detalle tipoDetalleCurriculum;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "curriculum", nullable = false)
+	private Curriculum curriculum;
 	
 	public DetalleCurriculum() {
 		
 	}
 	public DetalleCurriculum( String titulo, String descripcion, Date fechaInicio, Date fechaFinal,
-			Detalle tipoDetalleCurriculum, Empleado empleado) {
+			Detalle tipoDetalleCurriculum, Curriculum curriculum) {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.fechaInicio = fechaInicio;
 		this.fechaFinal = fechaFinal;
 		this.tipoDetalleCurriculum = tipoDetalleCurriculum;
-		this.empleado = empleado;
+		this.curriculum = curriculum;
 	}
 	public DetalleCurriculum(int id, String titulo, String descripcion, Date fechaInicio, Date fechaFinal,
-			Detalle tipoDetalleCurriculum, Empleado empleado) {
+			Detalle tipoDetalleCurriculum, Curriculum curriculum) {
 		this.id = id;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.fechaInicio = fechaInicio;
 		this.fechaFinal = fechaFinal;
 		this.tipoDetalleCurriculum = tipoDetalleCurriculum;
-		this.empleado = empleado;
+		this.curriculum = curriculum;
 	}
 	public int getId() {
 		return id;
@@ -90,10 +90,10 @@ public class DetalleCurriculum implements Serializable{
 	public void setTipoDetalleCurriculum(Detalle tipoDetalleCurriculum) {
 		this.tipoDetalleCurriculum = tipoDetalleCurriculum;
 	}
-	public Empleado getCurriculum() {
-		return empleado;
+	public Curriculum getCurriculum() {
+		return curriculum;
 	}
-	public void setCurriculum(Empleado empleado) {
-		this.empleado = empleado;
+	public void setCurriculum(Curriculum curriculum) {
+		this.curriculum = curriculum;
 	}
 }

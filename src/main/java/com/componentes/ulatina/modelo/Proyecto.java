@@ -18,18 +18,19 @@ import javax.persistence.*;
 public class Proyecto implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
+	private int id;
 	@Column(name = "nombre", nullable = false)
-	String nombre;
+	private String nombre;
 	@Column(name = "descripcion", nullable = false)
-	String descripcion;
+	private String descripcion;
 	@Column(name = "fechaInicio ", nullable = false)
-	Date fechaInicio;
+	private Date fechaInicio;
 	@Column(name = "fechaFinal ", nullable = false)
-	Date fechaFinal;
+	private Date fechaFinal;
 	@ManyToOne
 	@JoinColumn(name = "estado", nullable = false)
-	Detalle estado;
+	private Detalle estado;
+	
 	public Proyecto() {
 		
 	}

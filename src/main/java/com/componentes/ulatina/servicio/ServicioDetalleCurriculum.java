@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import com.componentes.ulatina.imantenimiento.IMantenimientoDetalleCurriculum;
+import com.componentes.ulatina.modelo.Curriculum;
 import com.componentes.ulatina.modelo.Detalle;
 import com.componentes.ulatina.modelo.DetalleCurriculum;
 import com.componentes.ulatina.modelo.Empleado;
@@ -63,12 +64,12 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 	}
 
 	@Override
-	public List<DetalleCurriculum> listarPorEmpleado(EntityManager em, Empleado empleado) {
+	public List<DetalleCurriculum> listarPorCurriculum(EntityManager em, Curriculum curriculum) {
 		TypedQuery<DetalleCurriculum> detalleCurriculum = null;
 		try {
 			em.getTransaction().begin();
-			detalleCurriculum = em.createNamedQuery("DetalleCurriculm.buscarPorEmpleado",DetalleCurriculum.class)
-					.setParameter("empleadoParam", empleado);
+			detalleCurriculum = em.createNamedQuery("DetalleCurriculm.buscarPorCurriculum",DetalleCurriculum.class)
+					.setParameter("curriculumParam", curriculum);
 			em.getTransaction().commit();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -77,12 +78,12 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 	}
 
 	@Override
-	public List<DetalleCurriculum> listarPorTipoEmpleado(EntityManager em, Empleado empleado, Detalle detalle) {
+	public List<DetalleCurriculum> listarPorTipoCurriculum(EntityManager em, Curriculum curriculum, Detalle detalle) {
 		TypedQuery<DetalleCurriculum> detalleCurriculum = null;
 		try {
 			em.getTransaction().begin();
-			detalleCurriculum = em.createNamedQuery("DetalleCurriculum.buscarTipoDeDetalle", DetalleCurriculum.class)
-					.setParameter("empleadoParam", empleado)
+			detalleCurriculum = em.createNamedQuery("DetalleCurriculum.buscarPorTipoCurriculum", DetalleCurriculum.class)
+					.setParameter("curriculumParam", curriculum)
 					.setParameter("tipoDetalleCurriculumParam",detalle);
 			em.getTransaction().commit();
 		}catch (Exception e) {

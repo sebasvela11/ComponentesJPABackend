@@ -3,6 +3,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 @Entity
+//@IdClass(TareaProyectoPK.class)
 @NamedQueries(value = {
         @NamedQuery(name = "TareaProyecto.buscarTodasTareas", query = "SELECT tp FROM TareaProyecto tp"),
         @NamedQuery(name = "TareaProyecto.buscarPorId", query = "SELECT t FROM TareaProyecto t WHERE t.id = :idParam"),
@@ -13,65 +14,50 @@ import javax.persistence.*;
 })
 @Table(name = "comp_tarea_proyecto")
 public class TareaProyecto implements Serializable{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
+	private int id;
+	
+	//@Id
 	@ManyToOne
-	@JoinColumn(name = "proyecto", nullable = false)
-	Proyecto proyecto;
-	@ManyToOne
-	@JoinColumn(name = "empleado", nullable = false)
-	Empleado empleado;
-	@Column(name = "tituloTarea", nullable = false)
-	String tituloTarea;
-	@Column(name = "tiempoInvertido", nullable = false)
-	Double tiempoInvertido;
-	@ManyToOne
-	@JoinColumn(name = "tipoTarea", nullable = false)
-	Detalle tipoTarea;
-	@ManyToOne
-	@JoinColumn(name = "estado", nullable = false)
-	Detalle estado;
-	public TareaProyecto() {
-		
-	}
-	public TareaProyecto( Proyecto proyecto, Empleado empleado, String tituloTarea, Double tiempoInvertido,
-			Detalle tipoTarea, Detalle estado) {
-		this.proyecto = proyecto;
-		this.empleado = empleado;
-		this.tituloTarea = tituloTarea;
-		this.tiempoInvertido = tiempoInvertido;
-		this.tipoTarea = tipoTarea;
-		this.estado = estado;
-	}
-	public TareaProyecto(int id, Proyecto proyecto, Empleado empleado, String tituloTarea, Double tiempoInvertido,
-			Detalle tipoTarea, Detalle estado) {
-		this.id = id;
-		this.proyecto = proyecto;
-		this.empleado = empleado;
-		this.tituloTarea = tituloTarea;
-		this.tiempoInvertido = tiempoInvertido;
-		this.tipoTarea = tipoTarea;
-		this.estado = estado;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public Proyecto getProyecto() {
-		return proyecto;
-	}
-	public void setProyecto(Proyecto proyecto) {
-		this.proyecto = proyecto;
-	}
-	public Empleado getEmpleado() {
-		return empleado;
-	}
-	public void setEmpleado(Empleado empleado) {
-		this.empleado = empleado;
-	}
+    @JoinColumn(name = "proyecto", nullable = false)
+    private Proyecto proyecto;
+	
+	//@Id
+    @ManyToOne
+    @JoinColumn(name = "empleado", nullable = false)
+    private Empleado empleado;
+
+    @Column(name = "tituloTarea", nullable = false)
+    private String tituloTarea;
+
+    @Column(name = "tiempoInvertido", nullable = false)
+    private Double tiempoInvertido;
+
+    @ManyToOne
+    @JoinColumn(name = "tipoTarea", nullable = false)
+    private Detalle tipoTarea;
+
+    @ManyToOne
+    @JoinColumn(name = "estado", nullable = false)
+    private Detalle estado;
+    
+    public TareaProyecto() {
+        
+    }
+    
+    public TareaProyecto(int id, Proyecto proyecto, Empleado empleado, String tituloTarea, Double tiempoInvertido,
+                    Detalle tipoTarea, Detalle estado) {
+    	this.id = id;
+        this.tituloTarea = tituloTarea;
+        this.tiempoInvertido = tiempoInvertido;
+        this.tipoTarea = tipoTarea;
+        this.estado = estado;
+        this.proyecto = proyecto;
+        this.empleado = empleado;
+    }
+	
 	public String getTituloTarea() {
 		return tituloTarea;
 	}
@@ -95,5 +81,21 @@ public class TareaProyecto implements Serializable{
 	}
 	public void setEstado(Detalle estado) {
 		this.estado = estado;
+	}
+
+	public Proyecto getProyecto() {
+		return proyecto;
+	}
+
+	public void setProyecto(Proyecto proyecto) {
+		this.proyecto = proyecto;
+	}
+
+	public Empleado getEmpleado() {
+		return empleado;
+	}
+
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
 	}
 }

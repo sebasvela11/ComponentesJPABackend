@@ -4,6 +4,7 @@
 		<class>com.componentes.ulatina.modelo.Maestro</class>
 		<class>com.componentes.ulatina.modelo.Detalle</class>
 		<class>com.componentes.ulatina.modelo.Empleado</class>
+		<class>com.componentes.ulatina.modelo.Curriculum</class>
 		<class>com.componentes.ulatina.modelo.DetalleCurriculum</class>
 		<class>com.componentes.ulatina.modelo.Proyecto</class>
 		<class>com.componentes.ulatina.modelo.TareaProyecto</class>

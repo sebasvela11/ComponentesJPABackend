@@ -15,6 +15,6 @@ public interface IMantenimientoDetalleCurriculum<E> {
 	public E detalleCurriculumPorId(EntityManager em, int id);
 	public List<E> listar(EntityManager em);
 	public List<E> listarPorTipo(EntityManager em, Detalle detalle);
-	public List<E> listarPorEmpleado(EntityManager em, Empleado empleado);
-	public List<E> listarPorTipoEmpleado(EntityManager em, Empleado empleado, Detalle detalle);
+	public List<E> listarPorCurriculum(EntityManager em, Curriculum curriculum);
+	public List<E> listarPorTipoCurriculum(EntityManager em, Curriculum curriculum, Detalle detalle);
 }

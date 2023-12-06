@@ -14,11 +14,11 @@ public class Maestro implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
+	private int id;
 	@Column(name = "codigoGeneral ", nullable = false, unique = true)
-	String codigoGeneral;
+	private String codigoGeneral;
 	@Column(name = "descripcion ", nullable = false, unique = true)
-	String descripcion;
+	private String descripcion;
 	
 	public Maestro() {
 		

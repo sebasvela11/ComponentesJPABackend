@@ -14,27 +14,28 @@ import javax.persistence.*;
 public class Empleado implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
+	private int id;
 	@Column(name = "nombre ", nullable = false)
-	String nombre;
+	private String nombre;
 	@Column(name = "apellidos ", nullable = false)
-	String apellidos;
+	private String apellidos;
 	@Column(name = "correoEmpresa ", nullable = false, unique = true)
-	String correoEmpresa;
+	private String correoEmpresa;
 	@Column(name = "correoPersonal ", nullable = false, unique = true)
-	String correoPersonal;
+	private String correoPersonal;
 	@Column(name = "numeroTelefono ", nullable = false, unique = true)
-	String numeroTelefono;
+	private String numeroTelefono;
 	@Column(name = "contrasena ", nullable = false)
-	String contrasena;
+	private String contrasena;
 	@Column(name = "edad ", nullable = false)
-	int edad;
+	private int edad;
 	@ManyToOne
 	@JoinColumn(name = "genero", nullable = false)
-	Detalle genero;
+	private Detalle genero;
 	@ManyToOne
 	@JoinColumn(name = "rol", nullable = false)
-	Detalle rol;
+	private Detalle rol;
+	
 	public Empleado() {
 
 	}
