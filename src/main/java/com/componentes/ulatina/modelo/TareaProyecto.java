@@ -55,6 +55,12 @@ public class TareaProyecto implements Serializable{
         this.empleado = empleado;
     }
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getTituloTarea() {
 		return tituloTarea;
 	}

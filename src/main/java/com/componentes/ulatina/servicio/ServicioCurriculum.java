@@ -31,6 +31,7 @@ public class ServicioCurriculum implements IMantenimientoCurriculum<Curriculum>{
 					.setParameter("idParam", new Integer(id)).getSingleResult();
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return curriculum;
@@ -45,6 +46,7 @@ public class ServicioCurriculum implements IMantenimientoCurriculum<Curriculum>{
 					.setParameter("empleadoParam", empleado).getSingleResult();
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return curriculum;
@@ -58,6 +60,7 @@ public class ServicioCurriculum implements IMantenimientoCurriculum<Curriculum>{
 			curriculum = em.createNamedQuery("Curriculum.buscarTodosCurriculums", Curriculum.class);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return curriculum.getResultList();

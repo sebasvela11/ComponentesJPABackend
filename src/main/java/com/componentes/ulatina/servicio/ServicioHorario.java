@@ -17,6 +17,7 @@ public class ServicioHorario implements IMantenimientoHorario<Horario>{
 			em.persist(horario);
 			em.getTransaction().commit();
 		}catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		
@@ -30,6 +31,7 @@ public class ServicioHorario implements IMantenimientoHorario<Horario>{
 			empleados = em.createNamedQuery("Horario.buscarTodosHorarios", Horario.class);
 			em.getTransaction().commit();
 		}catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return empleados.getResultList();
@@ -44,6 +46,7 @@ public class ServicioHorario implements IMantenimientoHorario<Horario>{
 					.setParameter("idParam", new Integer(id)).getSingleResult();
 			em.getTransaction().commit();
 		}catch(Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return horario;
@@ -58,6 +61,7 @@ public class ServicioHorario implements IMantenimientoHorario<Horario>{
 					.setParameter("empleadoParam", new Integer(empleado)).getSingleResult();
 			em.getTransaction().commit();
 		}catch(Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return horario;
@@ -72,6 +76,7 @@ public class ServicioHorario implements IMantenimientoHorario<Horario>{
 					.setParameter("empleadoParam", new Integer(id)).setParameter("idParam", new Integer(empleado)).getSingleResult();
 			em.getTransaction().commit();
 		}catch(Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return horario;

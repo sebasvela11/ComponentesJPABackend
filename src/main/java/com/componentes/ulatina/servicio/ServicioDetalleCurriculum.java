@@ -18,6 +18,7 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 			em.persist(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 	}
@@ -31,6 +32,7 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 					.setParameter("idParam", new Integer(id)).getSingleResult();
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return detalleCurriculum;
@@ -44,6 +46,7 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 			detallesCurriculum = em.createNamedQuery("DetalleCurriculum.buscarTodosDetalles", DetalleCurriculum.class);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return detallesCurriculum.getResultList();
@@ -58,6 +61,7 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 					.setParameter("detalleParam", detalle);
 			em.getTransaction().commit();
 		}catch(Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return detalleCurriculum.getResultList();
@@ -72,6 +76,7 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 					.setParameter("curriculumParam", curriculum);
 			em.getTransaction().commit();
 		}catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return detalleCurriculum.getResultList();
@@ -87,6 +92,7 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 					.setParameter("tipoDetalleCurriculumParam",detalle);
 			em.getTransaction().commit();
 		}catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return detalleCurriculum.getResultList();

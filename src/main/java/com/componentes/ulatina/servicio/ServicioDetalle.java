@@ -17,6 +17,7 @@ public class ServicioDetalle implements IMantenimientoDetalle<Detalle>{
 					.setParameter("idParam", new Integer(id)).getSingleResult();
 			em.getTransaction().commit();
 		}catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();	
 		}
 		return detalle;
@@ -31,6 +32,7 @@ public class ServicioDetalle implements IMantenimientoDetalle<Detalle>{
 					.setParameter("codigoGeneralParam", new String(codigoGeneral)).getSingleResult();
 			em.getTransaction().commit();
 		}catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return detalle;

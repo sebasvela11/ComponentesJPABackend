@@ -14,6 +14,7 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 			em.persist(empleado);
 			em.getTransaction().commit();
 		}catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 	}
@@ -28,6 +29,7 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 					.setParameter("contrasenaParam", new String(contrasena)).getSingleResult();
 			em.getTransaction().commit();
 		}catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return empleado;
@@ -42,6 +44,7 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 					.setParameter("idParam", new Integer(id)).getSingleResult();
 			em.getTransaction().commit();
 		}catch(Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return empleado;
@@ -55,6 +58,7 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 			empleados = em.createNamedQuery("Empleado.buscarTodosEmpleados", Empleado.class);
 			em.getTransaction().commit();
 		}catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return empleados.getResultList();
@@ -69,6 +73,7 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 					.setParameter("detalleParam", detalle);	
 			em.getTransaction().commit();
 		}catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return empleados.getResultList();

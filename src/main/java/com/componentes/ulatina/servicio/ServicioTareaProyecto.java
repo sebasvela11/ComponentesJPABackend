@@ -20,6 +20,7 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 			em.persist(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 	}
@@ -33,6 +34,7 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 					.setParameter("idParam", new Integer(id)).getSingleResult();
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return tareaProyecto;
@@ -46,6 +48,7 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 			tareasProyecto = em.createNamedQuery("TareaProyecto.buscarTodasTareas", TareaProyecto.class);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return tareasProyecto.getResultList();
@@ -60,6 +63,7 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 					.setParameter("proyectoParam", proyecto);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return tareasProyecto.getResultList();
@@ -74,6 +78,7 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 					.setParameter("empleadoParam", empleado);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return tareasProyecto.getResultList();
@@ -89,6 +94,7 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 					.setParameter("proyectoParam", proyecto);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return tareasProyecto.getResultList();
@@ -103,6 +109,7 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 					.setParameter("detalleParam", detalle);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 		return tareasProyecto.getResultList();
