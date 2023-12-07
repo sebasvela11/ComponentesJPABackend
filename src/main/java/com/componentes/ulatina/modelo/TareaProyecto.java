@@ -3,7 +3,6 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 @Entity
-//@IdClass(TareaProyectoPK.class)
 @NamedQueries(value = {
         @NamedQuery(name = "TareaProyecto.buscarTodasTareas", query = "SELECT tp FROM TareaProyecto tp"),
         @NamedQuery(name = "TareaProyecto.buscarPorId", query = "SELECT t FROM TareaProyecto t WHERE t.id = :idParam"),
@@ -19,12 +18,10 @@ public class TareaProyecto implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	//@Id
 	@ManyToOne
     @JoinColumn(name = "proyecto", nullable = false)
     private Proyecto proyecto;
 	
-	//@Id
     @ManyToOne
     @JoinColumn(name = "empleado", nullable = false)
     private Empleado empleado;

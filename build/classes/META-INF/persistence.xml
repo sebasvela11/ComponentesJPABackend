@@ -8,6 +8,7 @@
 		<class>com.componentes.ulatina.modelo.DetalleCurriculum</class>
 		<class>com.componentes.ulatina.modelo.Proyecto</class>
 		<class>com.componentes.ulatina.modelo.TareaProyecto</class>
+		<class>com.componentes.ulatina.modelo.Horario</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/componentes-administracion?serverTimezone=UTC"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
