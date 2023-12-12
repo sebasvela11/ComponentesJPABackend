@@ -10,6 +10,7 @@ import com.componentes.ulatina.modelo.Detalle;
 public interface IMantenimientoEmpleado<E> {
 	
 	public void insertar (EntityManager em, E obj);
+	public void modificar(EntityManager em, E obj);
 	public E validarUsuario(EntityManager em, String creedencial, String contrasena);
 	public E empleadoPorId(EntityManager em, int id);
 	public List<E> listar(EntityManager em);

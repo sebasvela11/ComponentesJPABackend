@@ -20,6 +20,17 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 	}
 	
 	@Override
+	public void modificar(EntityManager em, Empleado obj) {
+		try {
+			em.getTransaction().begin();
+			em.merge(obj);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
 	public Empleado validarUsuario(EntityManager em, String creedencial, String contrasena) {
 		Empleado empleado = new Empleado();
 		try {

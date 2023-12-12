@@ -12,6 +12,7 @@ import com.componentes.ulatina.modelo.Empleado;
 
 public interface IMantenimientoDetalleCurriculum<E> {
 	public void insertar(EntityManager em, E obj);
+	public void modificar(EntityManager em, E obj);
 	public E detalleCurriculumPorId(EntityManager em, int id);
 	public List<E> listar(EntityManager em);
 	public List<E> listarPorTipo(EntityManager em, Detalle detalle);

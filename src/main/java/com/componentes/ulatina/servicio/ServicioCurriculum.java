@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-
 import com.componentes.ulatina.imantenimiento.IMantenimientoCurriculum;
 import com.componentes.ulatina.modelo.Curriculum;
 import com.componentes.ulatina.modelo.Empleado;
@@ -16,6 +15,17 @@ public class ServicioCurriculum implements IMantenimientoCurriculum<Curriculum>{
 		try {
 			em.getTransaction().begin();
 			em.persist(obj);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void modificar(EntityManager em, Curriculum obj) {
+		try {
+			em.getTransaction().begin();
+			em.merge(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();

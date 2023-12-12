@@ -7,6 +7,7 @@ import javax.persistence.TypedQuery;
 
 import com.componentes.ulatina.imantenimiento.IMantenimientoTareaProyecto;
 import com.componentes.ulatina.modelo.Detalle;
+import com.componentes.ulatina.modelo.DetalleCurriculum;
 import com.componentes.ulatina.modelo.Empleado;
 import com.componentes.ulatina.modelo.Proyecto;
 import com.componentes.ulatina.modelo.TareaProyecto;
@@ -21,6 +22,17 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			em.getTransaction().commit();
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void modificar(EntityManager em, TareaProyecto obj) {
+		try {
+			em.getTransaction().begin();
+			em.merge(obj);
+			em.getTransaction().commit();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

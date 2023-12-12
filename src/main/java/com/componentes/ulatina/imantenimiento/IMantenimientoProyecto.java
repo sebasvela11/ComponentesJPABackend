@@ -9,6 +9,7 @@ import com.componentes.ulatina.modelo.Empleado;
 
 public interface IMantenimientoProyecto <E> {
 	public void insertar(EntityManager em, E obj);
+	public void modificar(EntityManager em, E obj);
 	public E proyectoPorId(EntityManager em, int id);
 	public List<E> listar(EntityManager em);
 	public List<E> listarPorEmpleado(EntityManager em, Empleado empleado);

@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import com.componentes.ulatina.imantenimiento.IMantenimientoHorario;
+import com.componentes.ulatina.modelo.DetalleCurriculum;
 import com.componentes.ulatina.modelo.Horario;
 
 public class ServicioHorario implements IMantenimientoHorario<Horario>{
@@ -20,7 +21,17 @@ public class ServicioHorario implements IMantenimientoHorario<Horario>{
 			em.getTransaction().commit();
 			e.printStackTrace();
 		}
-		
+	}
+	
+	@Override
+	public void modificar(EntityManager em, Horario obj) {
+		try {
+			em.getTransaction().begin();
+			em.merge(obj);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

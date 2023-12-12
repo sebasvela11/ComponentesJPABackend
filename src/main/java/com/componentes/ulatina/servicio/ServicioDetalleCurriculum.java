@@ -22,6 +22,17 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public void modificar(EntityManager em, DetalleCurriculum obj) {
+		try {
+			em.getTransaction().begin();
+			em.merge(obj);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public DetalleCurriculum detalleCurriculumPorId(EntityManager em, int id) {
