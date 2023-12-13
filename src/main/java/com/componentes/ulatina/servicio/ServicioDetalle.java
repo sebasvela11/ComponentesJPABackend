@@ -1,9 +1,14 @@
 package com.componentes.ulatina.servicio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import com.componentes.ulatina.imantenimiento.IMantenimientoDetalle;
 import com.componentes.ulatina.modelo.Detalle;
+import com.componentes.ulatina.modelo.Empleado;
 import com.componentes.ulatina.modelo.Maestro;
 
 public class ServicioDetalle implements IMantenimientoDetalle<Detalle>{
@@ -36,5 +41,20 @@ public class ServicioDetalle implements IMantenimientoDetalle<Detalle>{
 			e.printStackTrace();
 		}
 		return detalle;
+	}
+	
+	@Override
+	public List<Detalle> detallePorMaestro(EntityManager em, Maestro maestro) {
+		TypedQuery<Detalle> detalles = null;
+		try {
+			em.getTransaction().begin();
+			detalles = em.createNamedQuery("Detalle.detallePorMaestro", Detalle.class)
+					.setParameter("maestroParam", maestro);
+			em.getTransaction().commit();
+		}catch (Exception e) {
+			em.getTransaction().commit();
+			e.printStackTrace();
+		}
+		return detalles.getResultList();
 	}
 }
