@@ -18,7 +18,9 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 			em.persist(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			em.getTransaction().commit();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+	        }
 			e.printStackTrace();
 		}
 	}
@@ -30,7 +32,9 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 			em.merge(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			em.getTransaction().commit();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+	        }
 			e.printStackTrace();
 		}
 	}
@@ -44,7 +48,9 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 					.setParameter("idParam", new Integer(id)).getSingleResult();
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			em.getTransaction().commit();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+	        }
 			e.printStackTrace();
 		}
 		return proyecto;
@@ -59,7 +65,9 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 			proyectos = em.createNamedQuery("Proyecto.buscarTodosProyectos", Proyecto.class);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			em.getTransaction().commit();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+	        }
 			e.printStackTrace();
 		}
 		return proyectos.getResultList();
@@ -74,7 +82,9 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 					.setParameter("idUsuarioParam", new Integer(empleado.getId()));
 			em.getTransaction().commit();
 		}catch (Exception e) {
-			em.getTransaction().commit();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+	        }
 			e.printStackTrace();
 		}
 		return proyectos.getResultList();
@@ -89,7 +99,9 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 					.setParameter("estadoParam", detalle);	
 			em.getTransaction().commit();
 		}catch (Exception e) {
-			em.getTransaction().commit();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+	        }
 			e.printStackTrace();
 		}
 		return proyectos.getResultList();
@@ -106,7 +118,9 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 					.setParameter("idEstadoParam", new Integer(detalle.getId()));
 			em.getTransaction().commit();
 		}catch (Exception e) {
-			em.getTransaction().commit();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+	        }
 			e.printStackTrace();
 		}
 		return proyectos.getResultList();

@@ -17,6 +17,9 @@ public class ServicioCurriculum implements IMantenimientoCurriculum<Curriculum>{
 			em.persist(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+	        }
 			e.printStackTrace();
 		}
 	}
@@ -28,7 +31,9 @@ public class ServicioCurriculum implements IMantenimientoCurriculum<Curriculum>{
 			em.merge(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			em.getTransaction().commit();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+	        }
 			e.printStackTrace();
 		}
 	}
@@ -42,7 +47,9 @@ public class ServicioCurriculum implements IMantenimientoCurriculum<Curriculum>{
 					.setParameter("idParam", new Integer(id)).getSingleResult();
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			em.getTransaction().commit();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+	        }
 			e.printStackTrace();
 		}
 		return curriculum;
@@ -57,7 +64,9 @@ public class ServicioCurriculum implements IMantenimientoCurriculum<Curriculum>{
 					.setParameter("empleadoParam", empleado).getSingleResult();
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			em.getTransaction().commit();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+	        }
 			e.printStackTrace();
 		}
 		return curriculum;
@@ -71,7 +80,9 @@ public class ServicioCurriculum implements IMantenimientoCurriculum<Curriculum>{
 			curriculum = em.createNamedQuery("Curriculum.buscarTodosCurriculums", Curriculum.class);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			em.getTransaction().commit();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+	        }
 			e.printStackTrace();
 		}
 		return curriculum.getResultList();

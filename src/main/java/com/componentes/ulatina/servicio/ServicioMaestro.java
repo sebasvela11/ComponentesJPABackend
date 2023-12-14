@@ -17,7 +17,9 @@ public class ServicioMaestro implements IMantenimientoMaestro<Maestro>{
 					.setParameter("idParam", new Integer(id)).getSingleResult();
 			em.getTransaction().commit();
 		}catch (Exception e) {
-			em.getTransaction().commit();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+	        }
 			e.printStackTrace();
 		}
 		return maestro;
@@ -32,7 +34,9 @@ public class ServicioMaestro implements IMantenimientoMaestro<Maestro>{
 					.setParameter("codigoGeneralParam", new String(codigoGeneral)).getSingleResult();
 			em.getTransaction().commit();
 		}catch (Exception e) {
-			em.getTransaction().commit();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+	        }
 			e.printStackTrace();
 		}
 		return maestro;
