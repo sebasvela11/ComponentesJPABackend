@@ -30,6 +30,7 @@ public class ServicioHorario implements IMantenimientoHorario<Horario>{
 			em.merge(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 	}

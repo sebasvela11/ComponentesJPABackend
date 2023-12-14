@@ -26,6 +26,7 @@ public class ServicioEmpleado implements IMantenimientoEmpleado<Empleado>{
 			em.merge(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 	}

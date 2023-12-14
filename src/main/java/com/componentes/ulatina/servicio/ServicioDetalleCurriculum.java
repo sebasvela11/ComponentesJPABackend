@@ -30,6 +30,7 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 			em.merge(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 	}

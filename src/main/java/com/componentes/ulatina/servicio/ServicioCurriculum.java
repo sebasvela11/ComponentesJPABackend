@@ -28,6 +28,7 @@ public class ServicioCurriculum implements IMantenimientoCurriculum<Curriculum>{
 			em.merge(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 	}

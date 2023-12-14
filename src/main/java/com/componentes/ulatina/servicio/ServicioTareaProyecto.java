@@ -33,6 +33,7 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 			em.merge(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 	}

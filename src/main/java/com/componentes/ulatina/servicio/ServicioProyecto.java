@@ -30,6 +30,7 @@ public class ServicioProyecto implements IMantenimientoProyecto<Proyecto> {
 			em.merge(obj);
 			em.getTransaction().commit();
 		} catch (Exception e) {
+			em.getTransaction().commit();
 			e.printStackTrace();
 		}
 	}
