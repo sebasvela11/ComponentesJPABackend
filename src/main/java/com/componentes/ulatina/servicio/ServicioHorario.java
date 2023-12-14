@@ -105,22 +105,5 @@ public class ServicioHorario implements IMantenimientoHorario<Horario>{
 		}
 		return horario;
 	}
-	
-	@Override 
-	public Horario calcularIdMaximo(EntityManager em) {
-		Horario horario = new Horario();
-		try {
-			em.getTransaction().begin();
-			horario = em.createNamedQuery("Horario.calcularIdMaximo", Horario.class).getSingleResult();
-			em.getTransaction().commit();
-		}catch(Exception e) {
-			if (em.getTransaction().isActive()) {
-				em.getTransaction().rollback();
-	        }
-			e.printStackTrace();
-		}
-		return horario;
-		
-	}
 
 }
