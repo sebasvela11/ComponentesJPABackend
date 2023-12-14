@@ -12,11 +12,13 @@ import javax.persistence.*;
 		@NamedQuery(name = "Horario.buscarPorId", query = "SELECT h FROM Horario h WHERE h.id = :idParam"),
 		@NamedQuery(name = "Horario.buscarPorEmpleado", query = "SELECT h FROM Horario h WHERE h.empleado = :empleadoParam"),
 		@NamedQuery(name = "Horario.buscarPorIdEmpleado", query = "SELECT h FROM Horario h WHERE h.empleado = :empleadoParam AND h.id = :idParam")})
+@NamedNativeQueries({
+	@NamedNativeQuery(name = "Horario.calcularIdMaximo", query = "SELECT MAX(id) AS maximo_valor FROM comp_horario", resultClass = Integer.class) })
 @Table(name = "comp_horario")
 public class Horario implements Serializable{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false, unique = true)
 	private Integer id;
 	@Id
 	@Column(name = "empleado", nullable = false, unique = true)

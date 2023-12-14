@@ -11,4 +11,5 @@ public interface IMantenimientoHorario<E> {
 	public E horarioPorId(EntityManager em, Integer id);
 	public E horarioPorEmpleado(EntityManager em, Integer empleado);
 	public E horarioPorIdEmpleado(EntityManager em, Integer id, Integer empleado);
+	public Integer calcularIdMaximo(EntityManager em);
 }
