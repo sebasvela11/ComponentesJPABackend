@@ -41,6 +41,20 @@ public class ServicioTareaProyecto implements IMantenimientoTareaProyecto<TareaP
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public void eliminar(EntityManager em, TareaProyecto obj) {
+		try {
+			em.getTransaction().begin();
+			em.remove(obj);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+	        }
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public TareaProyecto tereaProyectoPorId(EntityManager em, int id) {

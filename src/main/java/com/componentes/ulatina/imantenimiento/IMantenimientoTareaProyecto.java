@@ -13,6 +13,7 @@ public interface IMantenimientoTareaProyecto<E> {
 	
 	public void insertar(EntityManager em, E obj);
 	public void modificar(EntityManager em, E obj);
+	public void eliminar(EntityManager em, E obj);
 	public E tereaProyectoPorId(EntityManager em, int id);
 	public List<E> listar(EntityManager em);
 	public List<E> listarPorProyecto(EntityManager em, Proyecto proyecto);

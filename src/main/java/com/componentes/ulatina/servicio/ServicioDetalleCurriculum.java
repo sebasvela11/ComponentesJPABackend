@@ -94,7 +94,7 @@ public class ServicioDetalleCurriculum implements IMantenimientoDetalleCurriculu
 		TypedQuery<DetalleCurriculum> detalleCurriculum = null;
 		try {
 			em.getTransaction().begin();
-			detalleCurriculum = em.createNamedQuery("DetalleCurriculm.buscarPorCurriculum",DetalleCurriculum.class)
+			detalleCurriculum = em.createNamedQuery("DetalleCurriculum.buscarPorCurriculum",DetalleCurriculum.class)
 					.setParameter("curriculumParam", curriculum);
 			em.getTransaction().commit();
 		}catch (Exception e) {
